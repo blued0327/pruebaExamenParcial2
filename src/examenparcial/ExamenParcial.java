@@ -4,6 +4,8 @@
  */
 package examenparcial;
 
+import connection.CreateConnection;
+
 /**
  *
  * @author jdmm0
@@ -15,6 +17,9 @@ public class ExamenParcial {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        //prueba conexion
+        CreateConnection conn = new CreateConnection();
+        conn.getConnection();
     }
-    
+
 }
