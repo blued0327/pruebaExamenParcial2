@@ -72,7 +72,7 @@ public class EmpleadoDao {
     //guardar
     public boolean guardar(EmpleadoModel emp) {
         //query
-        String query = "INSERT INTO persona(nombre,apellido,puesto,salario) values (?,?,?,?)";
+        String query = "INSERT INTO empleado(nombre,apellido,puesto,salario) values (?,?,?,?)";
 
         //try
         try (Connection conn = connf.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
@@ -94,7 +94,7 @@ public class EmpleadoDao {
 
     public boolean actualizar(EmpleadoModel emp) {
         //query
-        String query = "UPDATE persona set nombre= ? , apellido=?, puesto = ?, salario =? where id_emp = ?";
+        String query = "UPDATE empleado set nombre= ? , apellido=?, puesto = ?, salario =? where id_emp = ?";
         //try
         try (Connection conn = connf.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setString(1, emp.getNombre());
@@ -117,7 +117,7 @@ public class EmpleadoDao {
 
     public boolean eliminar(int id) {
         //query 
-        String query = "DELETE from personas where id_emp = ?";
+        String query = "DELETE from empleado where id_emp = ?";
 
         //try
         try (Connection conn = connf.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
