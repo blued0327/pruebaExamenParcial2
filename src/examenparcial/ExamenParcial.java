@@ -5,7 +5,8 @@
 package examenparcial;
 
 import connection.CreateConnection;
-
+import dao.EmpleadoDao;
+import model.EmpleadoModel;
 /**
  *
  * @author jdmm0
@@ -20,6 +21,9 @@ public class ExamenParcial {
         //prueba conexion
         CreateConnection conn = new CreateConnection();
         conn.getConnection();
+        EmpleadoDao dao = new EmpleadoDao();
+        //pruebas
+        EmpleadoModel emp = dao.obtenerId(1);
     }
 
 }
