@@ -9,25 +9,24 @@ import java.util.List;
 
 public class EmpleadoDao {
 
-    private final CreateConnection connf = new CreateConnection();
+    private CreateConnection connf = new CreateConnection();
 
     public EmpleadoModel obtenerId(int id) {
         //query
         String query = "SELECT *FROM personas where id_emp = ?";
-        //try
-        try (Connection conn = connf.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
 
-            ps.setInt(1, id);
+        //1Try
+        try (Connection conn = connf.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, "id_emp");
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    EmpleadoModel emp = new EmpleadoModel(
+                    return new EmpleadoModel(
                             rs.getInt("id_emp"),
                             rs.getString("nombre"),
                             rs.getString("apellido"),
                             rs.getString("puesto"),
                             rs.getDouble("salario"));
-
                 }
             }
 
@@ -39,14 +38,13 @@ public class EmpleadoDao {
     }
 
     public List<EmpleadoModel> obtenerTodos() {
-        //lista
+        //arraylist
         List<EmpleadoModel> lista = new ArrayList<>();
         //query
-        String query = "SELECT *FROM personas";
+        String query = "SELECT *FROM empleados";
 
         //try
         try (Connection conn = connf.getConnection(); PreparedStatement ps = conn.prepareStatement(query); ResultSet rs = ps.executeQuery()) {
-
             while (rs.next()) {
                 EmpleadoModel emp = new EmpleadoModel(
                         rs.getInt("id_emp"),
@@ -61,13 +59,13 @@ public class EmpleadoDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return lista;
 
+        return lista;
     }
 
     public boolean guardar(EmpleadoModel emp) {
         //query
-        String query = "INSERT INTO personas(nombre,apellido,puesto,salario) values (?,?,?,?)";
+        String query = "INSERT INTO persona(nombre,apellido,puesto,salario) VALUES (?,?,?,?)";
         //try
         try (Connection conn = connf.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
 
@@ -75,6 +73,29 @@ public class EmpleadoDao {
             ps.setString(2, emp.getApellido());
             ps.setString(3, emp.getPuesto());
             ps.setDouble(4, emp.getSalario());
+
+            ps.executeUpdate();
+
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean actualizar(EmpleadoModel emp) {
+        //query
+        String query = "UPDATE persona set nombre = ?, apellido = ?,puesto = ?, salario = ? where id_emp = ? ";
+        //try
+        try (Connection conn = connf.getConnection(); PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setString(1, emp.getNombre());
+            ps.setString(2, emp.getApellido());
+            ps.setString(3, emp.getPuesto());
+            ps.setDouble(4, emp.getSalario());
+            ps.setInt(5, emp.getId_emp());
 
             ps.executeUpdate();
 
