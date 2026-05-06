@@ -1,18 +1,22 @@
 
 package model;
 
+import java.time.LocalDateTime;
+
 
 public class ClienteModel {
     private int id_cliente;
-    private int apellido;
+    private String apellido;
     private String dpi;
     private String  direccion;
     private String telefono;
     private String email;
-    private String fecha_registro;
+    private LocalDateTime fecha_registro;
     private boolean  estado;
 
-    public ClienteModel(int id_cliente, int apellido, String dpi, String direccion, String telefono, String email, String fecha_registro, boolean estado) {
+    
+    //entero
+    public ClienteModel(int id_cliente, String apellido, String dpi, String direccion, String telefono, String email, LocalDateTime fecha_registro, boolean estado) {
         this.id_cliente = id_cliente;
         this.apellido = apellido;
         this.dpi = dpi;
@@ -22,6 +26,19 @@ public class ClienteModel {
         this.fecha_registro = fecha_registro;
         this.estado = estado;
     }
+    
+    //sin id
+
+    public ClienteModel(String apellido, String dpi, String direccion, String telefono, String email, LocalDateTime fecha_registro, boolean estado) {
+        this.apellido = apellido;
+        this.dpi = dpi;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
+        this.fecha_registro = fecha_registro;
+        this.estado = estado;
+    }
+    
 
     public int getId_cliente() {
         return id_cliente;
@@ -31,11 +48,11 @@ public class ClienteModel {
         this.id_cliente = id_cliente;
     }
 
-    public int getApellido() {
+    public String getApellido() {
         return apellido;
     }
 
-    public void setApellido(int apellido) {
+    public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
@@ -71,11 +88,11 @@ public class ClienteModel {
         this.email = email;
     }
 
-    public String getFecha_registro() {
+    public LocalDateTime getFecha_registro() {
         return fecha_registro;
     }
 
-    public void setFecha_registro(String fecha_registro) {
+    public void setFecha_registro(LocalDateTime fecha_registro) {
         this.fecha_registro = fecha_registro;
     }
 
@@ -86,6 +103,10 @@ public class ClienteModel {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+ 
+
+  
     
    
 }

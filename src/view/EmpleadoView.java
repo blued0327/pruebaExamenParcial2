@@ -4,8 +4,8 @@
  */
 package view;
 
-import model.EmpleadoModel;
 import controller.EmpleadoController;
+import model.EmpleadoModel;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -15,11 +15,13 @@ import javax.swing.table.DefaultTableModel;
  * @author jdmm0
  */
 public class EmpleadoView extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(EmpleadoView.class.getName());
     private final EmpleadoController controller = new EmpleadoController();
     private final DefaultTableModel tableModel = new DefaultTableModel(
-            new Object[]{"ID", "NOMBRE", "APELLIDO", "PUESTO", "SALARIO"}, 0);
+            new Object[]{
+                "ID", "NOMBRE", "APELLIDO", "PUESTO", "SALARIO"
+            }, 0);
 
     /**
      * Creates new form EmpleadoView
@@ -27,6 +29,7 @@ public class EmpleadoView extends javax.swing.JFrame {
     public EmpleadoView() {
         initComponents();
         tbl_consulta.setModel(tableModel);
+
     }
 
     /**
@@ -188,36 +191,41 @@ public class EmpleadoView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cargarEmpleado() {
+    private void cargarEmpleados() {
         tableModel.setRowCount(0);
+
         for (EmpleadoModel emp : controller.obtenerEmpleados()) {
-            tableModel.addRow(new Object[]{emp.getId_emp(), emp.getNombre(), emp.getApellido(), emp.getPuesto(), emp.getSalario()});
+            tableModel.addRow(new Object[]{
+                emp.getId_emp(), emp.getNombre(), emp.getApellido(), emp.getPuesto(), emp.getSalario()});
         }
     }
+
     private void btn_insertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_insertarActionPerformed
         // TODO add your handling code here:
-        controller.guardarEmpleados(txt_nombre.getText(), txt_apellido.getText(), txt_puesto.getText(), Double.parseDouble(txt_salario.getText()));
-        cargarEmpleado();
+        controller.guardarEmpleados(txt_nombre.getText(), txt_apellido.getText(), txt_puesto.getText(), Integer.parseInt(txt_salario.getText()));
+        cargarEmpleados();
+
     }//GEN-LAST:event_btn_insertarActionPerformed
 
     private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
         // TODO add your handling code here:
-        String id = JOptionPane.showInputDialog("Codigo a actualizar");
-        controller.actualizarEmpleados(Integer.parseInt(id), txt_nombre.getText(), txt_apellido.getText(), txt_puesto.getText(), Double.parseDouble(txt_salario.getText()));
-        cargarEmpleado();
+        String id = JOptionPane.showInputDialog("Empleado a actualizar");
+        controller.actualizarEmpleados(Integer.parseInt(id), txt_nombre.getText(), txt_apellido.getText(), txt_puesto.getText(), Integer.parseInt(txt_salario.getText()));
+        cargarEmpleados();
     }//GEN-LAST:event_btn_actualizarActionPerformed
 
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
         // TODO add your handling code here:
-        String id = JOptionPane.showInputDialog("Codigo a eliminar");
+        String id = JOptionPane.showInputDialog("Empleado a eliminar");
         controller.eliminarEmpleado(Integer.parseInt(id));
-        cargarEmpleado();
+        cargarEmpleados();
+
 
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
     private void btn_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultarActionPerformed
         // TODO add your handling code here:
-        cargarEmpleado();
+        cargarEmpleados();
     }//GEN-LAST:event_btn_consultarActionPerformed
 
     /**
