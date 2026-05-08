@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 public class ClienteModel {
     private int id_cliente;
+    private String nombre;
     private String apellido;
     private String dpi;
     private String  direccion;
@@ -14,10 +15,9 @@ public class ClienteModel {
     private LocalDateTime fecha_registro;
     private boolean  estado;
 
-    
-    //entero
-    public ClienteModel(int id_cliente, String apellido, String dpi, String direccion, String telefono, String email, LocalDateTime fecha_registro, boolean estado) {
+    public ClienteModel(int id_cliente, String nombre, String apellido, String dpi, String direccion, String telefono, String email, LocalDateTime fecha_registro, boolean estado) {
         this.id_cliente = id_cliente;
+        this.nombre = nombre;
         this.apellido = apellido;
         this.dpi = dpi;
         this.direccion = direccion;
@@ -26,17 +26,27 @@ public class ClienteModel {
         this.fecha_registro = fecha_registro;
         this.estado = estado;
     }
-    
-    //sin id
 
-    public ClienteModel(String apellido, String dpi, String direccion, String telefono, String email, LocalDateTime fecha_registro, boolean estado) {
+    public ClienteModel(String nombre, String apellido, String dpi, String direccion, String telefono, String email) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dpi = dpi;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.email = email;
+    }
+    
+    //sin estado
+
+    public ClienteModel(int id_cliente, String nombre, String apellido, String dpi, String direccion, String telefono, String email, LocalDateTime fecha_registro) {
+        this.id_cliente = id_cliente;
+        this.nombre = nombre;
         this.apellido = apellido;
         this.dpi = dpi;
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
         this.fecha_registro = fecha_registro;
-        this.estado = estado;
     }
     
 
@@ -46,6 +56,14 @@ public class ClienteModel {
 
     public void setId_cliente(int id_cliente) {
         this.id_cliente = id_cliente;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getApellido() {
@@ -104,6 +122,8 @@ public class ClienteModel {
         this.estado = estado;
     }
 
+    
+    
  
 
   

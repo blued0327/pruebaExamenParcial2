@@ -46,7 +46,8 @@ public class EmpleadoDao {
         try (Connection conn = connf.getConnection(); PreparedStatement ps = conn.prepareStatement(query); ResultSet rs = ps.executeQuery()) {
             
             while (rs.next()) {
-                EmpleadoModel emp = new EmpleadoModel(rs.getInt("id_emp"),
+                EmpleadoModel emp = new EmpleadoModel(
+                        rs.getInt("id_emp"),
                         rs.getString("nombre"),
                         rs.getString("apellido"),
                         rs.getString("puesto"),

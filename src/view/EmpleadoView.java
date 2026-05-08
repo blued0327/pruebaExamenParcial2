@@ -191,6 +191,8 @@ public class EmpleadoView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void cargarEmpleados() {
         tableModel.setRowCount(0);
 
